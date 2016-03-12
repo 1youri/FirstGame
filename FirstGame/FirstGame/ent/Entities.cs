@@ -15,10 +15,12 @@ namespace FirstGame.ent
         public List<chars.Enemy> Enemies { get; set; }
         public Attacks.objBullet Bullet { get; set; }
 
-
+        private bool MouseDown;
 
         public Entities()
         {
+            MouseDown = false;
+
             player = new Player(1.5);
             Bullet = new Attacks.objBullet(5,500);
         }
@@ -40,19 +42,20 @@ namespace FirstGame.ent
             MouseState mouse = Mouse.GetState();
 
             player.PlayerMove(mouse);
-            if (mouse.LeftButton == ButtonState.Pressed && Bullet.CooldownTime < gameTime.TotalGameTime.TotalMilliseconds)
+            if (mouse.LeftButton == ButtonState.Pressed && MouseDown == false && player.Properties.CoolDown < gameTime.TotalGameTime.TotalMilliseconds)
             {
 
                 Vector2 bulletDirection = Logic.CalcVector(-player.Loc.Rotation);
 
                 Bullet.CreateBullet(
-                    new entProp.Location(player.Loc.X + bulletDirection.X *45, player.Loc.Y+bulletDirection.Y *45, player.Loc.Rotation),
+                    new entProp.Location(player.Loc.X + bulletDirection.X * 45, player.Loc.Y + bulletDirection.Y * 45, player.Loc.Rotation),
                     bulletDirection,
-                    new entProp.SprInfo(Bullet.Sprite.Bounds, new Rectangle(player.Loc.rX, player.Loc.rY, 8, 4), new Vector2(4, 2)));
+                    new SprInfo(Bullet.Sprite.Bounds, new Rectangle(player.Loc.rX, player.Loc.rY, 8, 4), new Vector2(4, 2)));
 
-                Bullet.CooldownTime = (int)gameTime.TotalGameTime.TotalMilliseconds + Bullet.ShootCooldown;
-
+                player.Properties.CoolDown = (int)gameTime.TotalGameTime.TotalMilliseconds + Bullet.ShootCooldown;
+                MouseDown = true;
             }
+            else if(mouse.LeftButton == ButtonState.Released) MouseDown = false;
             
             foreach (Attacks.insBullet b in Bullet.Bullets)
             {

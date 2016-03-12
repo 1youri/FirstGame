@@ -14,7 +14,6 @@ namespace FirstGame.ent.Attacks
         public entProp.EntityProperties Properties { get; set; }
         public List<insBullet> Bullets { get; set; }
         public int ShootCooldown { get; set; }
-        public int CooldownTime { get; set; }
 
         public objBullet(double MoveSpeed, int Cooldown)
         {
@@ -25,7 +24,7 @@ namespace FirstGame.ent.Attacks
             this.ShootCooldown = Cooldown;
         }
 
-        public void CreateBullet(entProp.Location Loc, Vector2 Direction, entProp.SprInfo SprInf)
+        public void CreateBullet(entProp.Location Loc, Vector2 Direction, SprInfo SprInf)
         {
             Bullets.Add(new insBullet(Loc, Direction, SprInf));
         }

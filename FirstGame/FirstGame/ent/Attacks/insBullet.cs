@@ -11,9 +11,9 @@ namespace FirstGame.ent.Attacks
     class insBullet
     {
         public entProp.Location Loc { get; set; }
-        public entProp.SprInfo SprInf { get; set; }
+        public SprInfo SprInf { get; set; }
 
-        public insBullet(entProp.Location Loc, Vector2 Direction, entProp.SprInfo SprInf)
+        public insBullet(entProp.Location Loc, Vector2 Direction, SprInfo SprInf)
         {
             this.Loc = Loc;
             this.Loc.Direction = Direction;
