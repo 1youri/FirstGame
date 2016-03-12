@@ -12,6 +12,7 @@ namespace FirstGame
     class World
     {
         public ent.Entities Entities { get; set; }
+        public GameWorld.Map map { get; set; }
 
         public World()  
         {
@@ -33,6 +34,7 @@ namespace FirstGame
         {
             
             Entities.DrawEntities(spriteBatch);
+            map.drawMap(spriteBatch);
 
         }
     }
