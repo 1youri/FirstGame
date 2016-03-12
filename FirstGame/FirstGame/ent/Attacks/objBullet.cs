@@ -17,11 +17,12 @@ namespace FirstGame.ent.Attacks
 
         public objBullet(double MoveSpeed, int Cooldown)
         {
-            
+            Bullets = new List<insBullet>();
             this.Properties = new entProp.EntityProperties();
             this.Properties.MoveSpeed = MoveSpeed;
-            Bullets = new List<insBullet>();
             this.ShootCooldown = Cooldown;
+
+            this.Properties.HitboxDistance = 2;
         }
 
         public void CreateBullet(entProp.Location Loc, Vector2 Direction, SprInfo SprInf)

@@ -18,23 +18,25 @@ namespace FirstGame
         {
             //init World
             Entities = new ent.Entities();
+            map = new GameWorld.Map();
         }
 
         public void LoadWorld(ContentManager content)
         {
             Entities.LoadEntities(content);
+            map.LoadMap(content);
         }
 
         public void UpdateWorld(GameTime gameTime)
         {
-            Entities.UpdateEntities(gameTime);
+            Entities.UpdateEntities(gameTime, map);
         }
 
         public void DrawWorld(SpriteBatch spriteBatch)
         {
             
             Entities.DrawEntities(spriteBatch);
-            map.drawMap(spriteBatch);
+            map.DrawMap(spriteBatch);
 
         }
     }

@@ -9,5 +9,6 @@ namespace FirstGame.ent.entProp
     {
         public double MoveSpeed { get; set; }
         public int CoolDown { get; set; }
+        public double HitboxDistance { get; set; }
     }
 }

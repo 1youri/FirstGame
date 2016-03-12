@@ -62,6 +62,7 @@
     <Compile Include="FirstGame.cs" />
     <Compile Include="ent\entProp\Location.cs" />
     <Compile Include="GameWorld\Cell.cs" />
+    <Compile Include="GameWorld\objects\Wallobj.cs" />
     <Compile Include="Logic.cs" />
     <Compile Include="GameWorld\Map.cs" />
     <Compile Include="ent\Player.cs" />
@@ -79,19 +80,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\characters\player2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\characters\player3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\characters\player1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\crosshair.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\entities\bullet1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\objects\wall1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>

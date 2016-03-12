@@ -5,26 +5,33 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace FirstGame.GameWorld
 {
     class Map
     {
         public List<Cell> Cells { get; set; }
-        public List<objects.Wall> Walls { get; set; }
+        public GameWorld.objects.Wallobj Wall { get; set; }
+
 
         public Map()
         {
             Cells = new List<Cell>();
-            Walls = new List<objects.Wall>()
-            {
-                new objects.Wall(new Rectangle(200,200,50,50),new SprInfo(new Rectangle(0,0,0,0),new Rectangle(0,0,50,50),new Vector2(25,25)))
-            };
+            Wall = new objects.Wallobj();
         }
 
-        public void drawMap(SpriteBatch spriteBatch)
+        public void LoadMap(ContentManager content)
         {
+            Wall.Sprite = content.Load<Texture2D>("objects\\wall1.png");
+        }
 
+        public void DrawMap(SpriteBatch spriteBatch)
+        {
+            foreach (objects.Wall w in Wall.Walls)
+            {
+                spriteBatch.Draw(Wall.Sprite, w.SprInf.DestinationRect, w.SprInf.SourceRect, Color.White, 0, w.SprInf.Origin, SpriteEffects.None, 0);
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace FirstGame.ent
             MouseDown = false;
 
             player = new Player(1.5);
-            Bullet = new Attacks.objBullet(5,500);
+            Bullet = new Attacks.objBullet(5,50);
         }
 
         public void LoadEntities(ContentManager content)
@@ -37,7 +37,7 @@ namespace FirstGame.ent
             Bullet.Sprite = content.Load<Texture2D>("entities//bullet1.png");
         }
 
-        public void UpdateEntities(GameTime gameTime)
+        public void UpdateEntities(GameTime gameTime, GameWorld.Map map)
         {
             MouseState mouse = Mouse.GetState();
 
@@ -59,9 +59,18 @@ namespace FirstGame.ent
             
             foreach (Attacks.insBullet b in Bullet.Bullets)
             {
-                b.Loc.X += b.Loc.Direction.X * Bullet.Properties.MoveSpeed;
-                b.Loc.Y += b.Loc.Direction.Y * Bullet.Properties.MoveSpeed;
-                b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
+                foreach (GameWorld.objects.Wall w in map.Wall.Walls)
+                {
+                    Point collision = new Point((int)(b.Loc.X + b.Loc.Direction.X * 2), (int)(b.Loc.Y + b.Loc.Direction.Y * 2));
+                    if(!w.SprInf.DestinationRect.Contains(collision))
+                    {
+                        b.Loc.X += b.Loc.Direction.X * Bullet.Properties.MoveSpeed;
+                        b.Loc.Y += b.Loc.Direction.Y * Bullet.Properties.MoveSpeed;
+                        b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
+                    }
+                }
+
+               
             }
         }
 
