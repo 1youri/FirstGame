@@ -58,6 +58,7 @@
     <Compile Include="ent\chars\Enemy.cs" />
     <Compile Include="ent\Entities.cs" />
     <Compile Include="ent\entProp\EntityProperties.cs" />
+    <Compile Include="GameWorld\objects\Wall.cs" />
     <Compile Include="FirstGame.cs" />
     <Compile Include="ent\entProp\Location.cs" />
     <Compile Include="GameWorld\Cell.cs" />
@@ -66,7 +67,7 @@
     <Compile Include="ent\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ent\entProp\SprInfo.cs" />
+    <Compile Include="SprInfo.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>

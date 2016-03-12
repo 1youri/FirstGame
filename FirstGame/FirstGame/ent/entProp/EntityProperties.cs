@@ -8,5 +8,6 @@ namespace FirstGame.ent.entProp
     class EntityProperties
     {
         public double MoveSpeed { get; set; }
+        public int CoolDown { get; set; }
     }
 }

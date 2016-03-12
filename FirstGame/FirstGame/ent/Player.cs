@@ -13,7 +13,7 @@ namespace FirstGame.ent
         public entProp.Location Loc { get; set; }
         public List<Texture2D> Sprites { get; set; }
 
-        public entProp.SprInfo SprInf { get; set; }
+        public SprInfo SprInf { get; set; }
         public entProp.EntityProperties Properties { get; set; }
 
         private int walkCounter;
@@ -25,13 +25,14 @@ namespace FirstGame.ent
         {
             Properties = new entProp.EntityProperties();
             Loc = new entProp.Location(100, 100, 0);
-            SprInf = new entProp.SprInfo(new Rectangle(0, 00, 64, 32), new Rectangle(Loc.rX - 18, Loc.rY - 16, 64, 32), new Vector2(18, 16));
+            SprInf = new SprInfo(new Rectangle(0, 00, 64, 32), new Rectangle(Loc.rX - 18, Loc.rY - 16, 64, 32), new Vector2(18, 16));
 
             walkCounter = 0;
             frameSwitch = 20;
             nanVector = Vector2.Normalize(new Vector2(0, 0));
 
             Properties.MoveSpeed = MoveSpeed;
+            Properties.CoolDown = 0;
         }
 
         public void PlayerMove(MouseState mouse)
