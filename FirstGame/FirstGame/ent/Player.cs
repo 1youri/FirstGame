@@ -42,10 +42,11 @@ namespace FirstGame.ent
             if (Keyboard.GetState().IsKeyDown(Keys.D)) { walkDirection.X++; }
             if (Keyboard.GetState().IsKeyDown(Keys.W)) { walkDirection.Y--; }
             if (Keyboard.GetState().IsKeyDown(Keys.S)) { walkDirection.Y++ ; }
-            walkDirection = Vector2.Normalize(walkDirection);
+            walkDirection = CheckPlayerCollision(map, Vector2.Normalize(walkDirection));
+
             if (walkDirection.X.ToString() != "NaN" || walkDirection.X.ToString() != "NaN")
             {
-                walkDirection = CheckPlayerCollision(map, walkDirection);
+                CheckPlayerCollision(map, walkDirection);
                 Loc.X += walkDirection.X * Properties.MoveSpeed;
                 Loc.Y += walkDirection.Y * Properties.MoveSpeed;
                 walkCounter++;

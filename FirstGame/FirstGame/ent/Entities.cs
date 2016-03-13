@@ -39,25 +39,6 @@ namespace FirstGame.ent
 
         public void UpdateEntities(GameTime gameTime, GameWorld.Map map)
         {
-            MouseState mouse = Mouse.GetState();
-
-            player.PlayerMove(mouse, map);
-            if (mouse.LeftButton == ButtonState.Pressed && MouseDown == false && player.Properties.CoolDown < gameTime.TotalGameTime.TotalMilliseconds)
-            {
-
-                Vector2 bulletDirection = Logic.CalcVector(-player.Loc.Rotation);
-
-                Bullet.CreateBullet(
-                    new entProp.Location(player.Loc.X + bulletDirection.X * 45, player.Loc.Y + bulletDirection.Y * 45, player.Loc.Rotation),
-                    bulletDirection,
-                    new SprInfo(Bullet.Sprite.Bounds, new Rectangle(player.Loc.rX, player.Loc.rY, 8, 4), new Vector2(4, 2)));
-
-                player.Properties.CoolDown = (int)gameTime.TotalGameTime.TotalMilliseconds + Bullet.ShootCooldown;
-                MouseDown = true;
-            }
-            else if(mouse.LeftButton == ButtonState.Released) MouseDown = false;
-
-
             Checkcollision(map);
             foreach (Attacks.insBullet b in Bullet.Bullets)
             {
@@ -70,6 +51,24 @@ namespace FirstGame.ent
 
                
             }
+
+            MouseState mouse = Mouse.GetState();
+
+            player.PlayerMove(mouse, map);
+            if (mouse.LeftButton == ButtonState.Pressed && MouseDown == false && player.Properties.CoolDown < gameTime.TotalGameTime.TotalMilliseconds)
+            {
+
+                Vector2 bulletDirection = Logic.CalcVector(-player.Loc.Rotation);
+
+                Bullet.CreateBullet(
+                    new entProp.Location(player.Loc.X + bulletDirection.X * 45, player.Loc.Y + bulletDirection.Y * 45, player.Loc.Rotation),
+                    bulletDirection,
+                    new SprInfo(Bullet.Sprite.Bounds, new Rectangle(player.Loc.rX + (int)(bulletDirection.X * 45), player.Loc.rY + (int)(bulletDirection.Y * 45), 8, 4), new Vector2(4, 2)));
+
+                player.Properties.CoolDown = (int)gameTime.TotalGameTime.TotalMilliseconds + Bullet.ShootCooldown;
+                MouseDown = true;
+            }
+            else if (mouse.LeftButton == ButtonState.Released) MouseDown = false;
         }
 
 
