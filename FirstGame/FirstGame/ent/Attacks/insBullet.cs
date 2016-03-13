@@ -12,12 +12,14 @@ namespace FirstGame.ent.Attacks
     {
         public entProp.Location Loc { get; set; }
         public SprInfo SprInf { get; set; }
+        public bool Collision { get; set; }
 
         public insBullet(entProp.Location Loc, Vector2 Direction, SprInfo SprInf)
         {
             this.Loc = Loc;
             this.Loc.Direction = Direction;
             this.SprInf = SprInf;
+            Collision = false;
         }
 
     }

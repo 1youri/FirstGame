@@ -16,5 +16,6 @@ namespace FirstGame
                     (float)Math.Cos(Rotation),
                     -(float)Math.Sin(Rotation));
         }
+
     }
 }

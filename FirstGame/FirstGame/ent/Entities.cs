@@ -41,7 +41,7 @@ namespace FirstGame.ent
         {
             MouseState mouse = Mouse.GetState();
 
-            player.PlayerMove(mouse);
+            player.PlayerMove(mouse, map);
             if (mouse.LeftButton == ButtonState.Pressed && MouseDown == false && player.Properties.CoolDown < gameTime.TotalGameTime.TotalMilliseconds)
             {
 
@@ -56,18 +56,16 @@ namespace FirstGame.ent
                 MouseDown = true;
             }
             else if(mouse.LeftButton == ButtonState.Released) MouseDown = false;
-            
+
+
+            Checkcollision(map);
             foreach (Attacks.insBullet b in Bullet.Bullets)
             {
-                foreach (GameWorld.objects.Wall w in map.Wall.Walls)
+                if(!b.Collision)
                 {
-                    Point collision = new Point((int)(b.Loc.X + b.Loc.Direction.X * 2), (int)(b.Loc.Y + b.Loc.Direction.Y * 2));
-                    if(!w.SprInf.DestinationRect.Contains(collision))
-                    {
-                        b.Loc.X += b.Loc.Direction.X * Bullet.Properties.MoveSpeed;
-                        b.Loc.Y += b.Loc.Direction.Y * Bullet.Properties.MoveSpeed;
-                        b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
-                    }
+                    b.Loc.X += b.Loc.Direction.X * Bullet.Properties.MoveSpeed;
+                    b.Loc.Y += b.Loc.Direction.Y * Bullet.Properties.MoveSpeed;
+                    b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
                 }
 
                
@@ -86,5 +84,26 @@ namespace FirstGame.ent
 
 
         }
+
+
+
+        public void Checkcollision(GameWorld.Map map)
+        {
+            foreach (Attacks.insBullet b in Bullet.Bullets)
+            {
+                if(!b.Collision)
+                {
+                    foreach (GameWorld.objects.Wall w in map.Wall.Walls)
+                    {
+                        if (w.SprInf.DestinationRect.Contains(b.Loc.rX + (b.Loc.Direction.X * 2), b.Loc.rY + (b.Loc.Direction.Y * 2)))
+                        {
+                            b.Collision = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        
     }
 }

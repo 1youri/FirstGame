@@ -16,6 +16,7 @@ namespace FirstGame.ent.Attacks
         public int ShootCooldown { get; set; }
 
         public objBullet(double MoveSpeed, int Cooldown)
+
         {
             Bullets = new List<insBullet>();
             this.Properties = new entProp.EntityProperties();

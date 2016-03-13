@@ -30,7 +30,7 @@ namespace FirstGame.GameWorld
         {
             foreach (objects.Wall w in Wall.Walls)
             {
-                spriteBatch.Draw(Wall.Sprite, w.SprInf.DestinationRect, w.SprInf.SourceRect, Color.White, 0, w.SprInf.Origin, SpriteEffects.None, 0);
+                spriteBatch.Draw(Wall.Sprite, w.SprInf.DestinationRect, w.SprInf.SourceRect, Color.White, 0, new Vector2(0,0), SpriteEffects.None, 0);
             }
         }
     }

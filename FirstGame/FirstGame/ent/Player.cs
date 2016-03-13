@@ -35,7 +35,7 @@ namespace FirstGame.ent
             Properties.CoolDown = 0;
         }
 
-        public void PlayerMove(MouseState mouse)
+        public void PlayerMove(MouseState mouse, GameWorld.Map map)
         {
             walkDirection = new Vector2(0, 0);
             if (Keyboard.GetState().IsKeyDown(Keys.A)) { walkDirection.X--; }
@@ -45,6 +45,7 @@ namespace FirstGame.ent
             walkDirection = Vector2.Normalize(walkDirection);
             if (walkDirection.X.ToString() != "NaN" || walkDirection.X.ToString() != "NaN")
             {
+                walkDirection = CheckPlayerCollision(map, walkDirection);
                 Loc.X += walkDirection.X * Properties.MoveSpeed;
                 Loc.Y += walkDirection.Y * Properties.MoveSpeed;
                 walkCounter++;
@@ -54,13 +55,6 @@ namespace FirstGame.ent
             Vector2 direction = new Vector2(mouse.X - Loc.rX, mouse.Y - Loc.rY);
             Loc.Rotation = (float)(Math.Atan2(direction.Y, direction.X)/* + Math.PI * 0.5*/);
             SprInf.DestinationRect = new Rectangle(Loc.rX, Loc.rY, 64, 32);
-
-            
-
-            
-            
-
-
 
         }
 
@@ -72,6 +66,24 @@ namespace FirstGame.ent
             if (walkCounter > frameSwitch * 2) return 0;
             if (walkCounter > frameSwitch * 1) return 1;
             return 0;
+        }
+
+        public Vector2 CheckPlayerCollision(GameWorld.Map map, Vector2 walkDirection)
+        {
+            foreach (GameWorld.objects.Wall w in map.Wall.Walls)
+            {
+                if (w.SprInf.DestinationRect.Contains(Loc.rX + (int)(walkDirection.X * Properties.MoveSpeed), Loc.rY))
+                {
+                    walkDirection.X = 0;
+                }
+                if (w.SprInf.DestinationRect.Contains(Loc.rX, Loc.rY + (int)(walkDirection.Y * Properties.MoveSpeed)))
+                {
+                    walkDirection.Y = 0;
+                }
+
+               
+            }
+            return walkDirection;
         }
     }
 }

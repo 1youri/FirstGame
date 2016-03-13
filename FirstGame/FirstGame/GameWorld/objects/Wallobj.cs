@@ -17,7 +17,7 @@ namespace FirstGame.GameWorld.objects
         {
             Walls = new List<Wall>()
             {
-                new Wall(new Rectangle(200,200,50,50),new SprInfo(new Rectangle(0,0,32,32),new Rectangle(200,200,50,50),new Vector2(25,25)))
+                new Wall(new SprInfo(new Rectangle(0,0,32,32),new Rectangle(200,200,50,50),new Vector2(25,25)))
             };
         }
 
