@@ -14,7 +14,7 @@ namespace FirstGame
         public Rectangle DestinationRect { get; set; }
         public Vector2 Origin { get; set; }
         
-        public SprInfo(Rectangle SourceRect, Rectangle DestinationRect, Vector2 Origin)
+        public SprInfo(Rectangle SourceRect, Vector2 Origin, Rectangle DestinationRect)
         {
             this.SourceRect = SourceRect;
             this.DestinationRect = DestinationRect;

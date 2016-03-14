@@ -25,7 +25,7 @@ namespace FirstGame.ent
         {
             Properties = new entProp.EntityProperties();
             Loc = new entProp.Location(100, 100, 0);
-            SprInf = new SprInfo(new Rectangle(0, 00, 64, 32), new Rectangle(Loc.rX - 18, Loc.rY - 16, 64, 32), new Vector2(18, 16));
+            SprInf = new SprInfo(new Rectangle(0, 00, 64, 32), new Vector2(18, 16), new Rectangle(Loc.rX - 18, Loc.rY - 16, 64, 32));
 
             walkCounter = 0;
             frameSwitch = 20;
@@ -71,7 +71,7 @@ namespace FirstGame.ent
 
         public Vector2 CheckPlayerCollision(GameWorld.Map map, Vector2 walkDirection)
         {
-            foreach (GameWorld.objects.Wall w in map.Wall1.Walls)
+            foreach (GameWorld.objects.Wall w in map.CurrentCell.WallWood.Walls)
             {
                 if (w.SprInf.DestinationRect.Contains(Loc.rX + (int)(walkDirection.X * Properties.MoveSpeed), Loc.rY))
                 {

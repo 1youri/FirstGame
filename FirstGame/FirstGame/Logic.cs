@@ -17,5 +17,10 @@ namespace FirstGame
                     -(float)Math.Sin(Rotation));
         }
 
+        public static Rectangle Gridiffy(int LocX, int LocY)
+        {
+            return new Rectangle(LocX * 64, LocY * 64, 64, 64);
+        }
+
     }
 }

@@ -50,7 +50,7 @@ namespace FirstGame.ent
                 Bullet.CreateBullet(
                     new entProp.Location(player.Loc.X + bulletDirection.X * 45, player.Loc.Y + bulletDirection.Y * 45, player.Loc.Rotation),
                     bulletDirection,
-                    new SprInfo(Bullet.Sprite.Bounds, new Rectangle(player.Loc.rX + (int)(bulletDirection.X * 45), player.Loc.rY + (int)(bulletDirection.Y * 45), 8, 4), new Vector2(4, 2)));
+                    new SprInfo(Bullet.Sprite.Bounds, new Vector2(4, 2), new Rectangle(player.Loc.rX + (int)(bulletDirection.X * 45), player.Loc.rY + (int)(bulletDirection.Y * 45), 8, 4)));
 
                 player.Properties.CoolDown = (int)gameTime.TotalGameTime.TotalMilliseconds + Bullet.ShootCooldown;
                 MouseDown = true;
@@ -58,7 +58,7 @@ namespace FirstGame.ent
             else if (mouse.LeftButton == ButtonState.Released) MouseDown = false;
 
             Checkcollision(map);
-            foreach (Attacks.insBullet b in Bullet.Bullets)
+            foreach (Attacks.insBullet b in Bullet.Bullets.ToArray())
             {
                 if(!b.Collision)
                 {
@@ -66,8 +66,10 @@ namespace FirstGame.ent
                     b.Loc.Y += b.Loc.Direction.Y * Bullet.Properties.MoveSpeed;
                     b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
                 }
-
-               
+                if (b.Break)
+                {
+                    Bullet.Bullets.Remove(b);
+                }
             }
 
             
@@ -94,11 +96,19 @@ namespace FirstGame.ent
             {
                 if(!b.Collision)
                 {
-                    foreach (GameWorld.objects.Wall w in map.Wall1.Walls)
+                    foreach (GameWorld.objects.Wall w in map.CurrentCell.WallWood.Walls)
                     {
                         if (w.SprInf.DestinationRect.Contains(b.Loc.rX + (b.Loc.Direction.X * 2), b.Loc.rY + (b.Loc.Direction.Y * 2)))
                         {
                             b.Collision = true;
+                        }
+                    }
+                    foreach (GameWorld.objects.Wall w in map.CurrentCell.WallStone.Walls)
+                    {
+                        if (w.SprInf.DestinationRect.Contains(b.Loc.rX + (b.Loc.Direction.X * 2), b.Loc.rY + (b.Loc.Direction.Y * 2)))
+                        {
+                            b.Collision = true;
+                            b.Break = true;
                         }
                     }
                 }

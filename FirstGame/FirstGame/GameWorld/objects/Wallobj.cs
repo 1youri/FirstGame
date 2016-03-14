@@ -13,12 +13,9 @@ namespace FirstGame.GameWorld.objects
         public List<Wall> Walls { get; set; }
         public Texture2D Sprite { get; set; }
 
-        public Wallobj()
+        public Wallobj(List<Wall> Walls)
         {
-            Walls = new List<Wall>()
-            {
-                new Wall(new SprInfo(new Rectangle(0,0,32,32),new Rectangle(200,200,50,50),new Vector2(25,25)))
-            };
+            this.Walls = Walls;
         }
 
     }

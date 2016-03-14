@@ -18,6 +18,8 @@ namespace FirstGame
 
         World world;
         Texture2D CrossHair;
+        Texture2D DebugSelected;
+        SpriteFont font;
 
         public FirstGame()
         {
@@ -65,7 +67,8 @@ namespace FirstGame
 
             world.LoadWorld(Content);
             CrossHair = Content.Load<Texture2D>("crosshair.png");
-
+            DebugSelected = Content.Load<Texture2D>("Selected.png");
+            font = Content.Load<SpriteFont>("myFont");
 
             // TODO: use this.Content to load your game content here
         }
@@ -115,6 +118,8 @@ namespace FirstGame
             
             MouseState mouse = Mouse.GetState();
             spriteBatch.Draw(CrossHair, new Rectangle(mouse.X-16, mouse.Y-16, 32, 32), Color.White);
+            spriteBatch.Draw(DebugSelected, Logic.Gridiffy((int)Math.Floor((double)(mouse.X / 64)), (int)Math.Floor((double)(mouse.Y / 64))), Color.White);
+            spriteBatch.DrawString(font, "test", new Vector2(0, 0), Color.Black);
 
             
 

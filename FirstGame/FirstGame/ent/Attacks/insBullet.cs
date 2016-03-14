@@ -13,6 +13,7 @@ namespace FirstGame.ent.Attacks
         public entProp.Location Loc { get; set; }
         public SprInfo SprInf { get; set; }
         public bool Collision { get; set; }
+        public bool Break { get; set; }
 
         public insBullet(entProp.Location Loc, Vector2 Direction, SprInfo SprInf)
         {
@@ -20,6 +21,7 @@ namespace FirstGame.ent.Attacks
             this.Loc.Direction = Direction;
             this.SprInf = SprInf;
             Collision = false;
+            Break = false;
         }
 
     }

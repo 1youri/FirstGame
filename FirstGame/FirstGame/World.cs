@@ -30,6 +30,7 @@ namespace FirstGame
         public void UpdateWorld(GameTime gameTime)
         {
             Entities.UpdateEntities(gameTime, map);
+            map.UpdateMap(gameTime);
         }
 
         public void DrawWorld(SpriteBatch spriteBatch)

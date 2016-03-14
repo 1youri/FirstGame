@@ -12,26 +12,32 @@ namespace FirstGame.GameWorld
     class Map
     {
         public List<Cell> Cells { get; set; }
-        public objects.Wallobj Wall1 { get; set; }
+        public Cell CurrentCell { get; set; }
+        
 
 
         public Map()
         {
-            Cells = new List<Cell>();
-            Wall1 = new objects.Wallobj();
+            Cells = CellCreation.CreateCells();
+            CurrentCell = Cells[0];
         }
 
         public void LoadMap(ContentManager content)
         {
-            Wall1.Sprite = content.Load<Texture2D>("objects\\wall1.png");
+            foreach (Cell c in Cells)
+            {
+                c.LoadCell(content);
+            }
+        }
+
+        public void UpdateMap(GameTime gameTime)
+        {
+
         }
 
         public void DrawMap(SpriteBatch spriteBatch)
         {
-            foreach (objects.Wall w in Wall1.Walls)
-            {
-                spriteBatch.Draw(Wall1.Sprite, w.SprInf.DestinationRect, w.SprInf.SourceRect, Color.White, 0, new Vector2(0,0), SpriteEffects.None, 0);
-            }
+            CurrentCell.DrawCell(spriteBatch);
         }
     }
 }
