@@ -12,25 +12,25 @@ namespace FirstGame.GameWorld
     class Map
     {
         public List<Cell> Cells { get; set; }
-        public GameWorld.objects.Wallobj Wall { get; set; }
+        public objects.Wallobj Wall1 { get; set; }
 
 
         public Map()
         {
             Cells = new List<Cell>();
-            Wall = new objects.Wallobj();
+            Wall1 = new objects.Wallobj();
         }
 
         public void LoadMap(ContentManager content)
         {
-            Wall.Sprite = content.Load<Texture2D>("objects\\wall1.png");
+            Wall1.Sprite = content.Load<Texture2D>("objects\\wall1.png");
         }
 
         public void DrawMap(SpriteBatch spriteBatch)
         {
-            foreach (objects.Wall w in Wall.Walls)
+            foreach (objects.Wall w in Wall1.Walls)
             {
-                spriteBatch.Draw(Wall.Sprite, w.SprInf.DestinationRect, w.SprInf.SourceRect, Color.White, 0, new Vector2(0,0), SpriteEffects.None, 0);
+                spriteBatch.Draw(Wall1.Sprite, w.SprInf.DestinationRect, w.SprInf.SourceRect, Color.White, 0, new Vector2(0,0), SpriteEffects.None, 0);
             }
         }
     }

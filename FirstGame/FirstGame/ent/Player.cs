@@ -71,7 +71,7 @@ namespace FirstGame.ent
 
         public Vector2 CheckPlayerCollision(GameWorld.Map map, Vector2 walkDirection)
         {
-            foreach (GameWorld.objects.Wall w in map.Wall.Walls)
+            foreach (GameWorld.objects.Wall w in map.Wall1.Walls)
             {
                 if (w.SprInf.DestinationRect.Contains(Loc.rX + (int)(walkDirection.X * Properties.MoveSpeed), Loc.rY))
                 {

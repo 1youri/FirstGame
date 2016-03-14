@@ -39,19 +39,6 @@ namespace FirstGame.ent
 
         public void UpdateEntities(GameTime gameTime, GameWorld.Map map)
         {
-            Checkcollision(map);
-            foreach (Attacks.insBullet b in Bullet.Bullets)
-            {
-                if(!b.Collision)
-                {
-                    b.Loc.X += b.Loc.Direction.X * Bullet.Properties.MoveSpeed;
-                    b.Loc.Y += b.Loc.Direction.Y * Bullet.Properties.MoveSpeed;
-                    b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
-                }
-
-               
-            }
-
             MouseState mouse = Mouse.GetState();
 
             player.PlayerMove(mouse, map);
@@ -69,6 +56,21 @@ namespace FirstGame.ent
                 MouseDown = true;
             }
             else if (mouse.LeftButton == ButtonState.Released) MouseDown = false;
+
+            Checkcollision(map);
+            foreach (Attacks.insBullet b in Bullet.Bullets)
+            {
+                if(!b.Collision)
+                {
+                    b.Loc.X += b.Loc.Direction.X * Bullet.Properties.MoveSpeed;
+                    b.Loc.Y += b.Loc.Direction.Y * Bullet.Properties.MoveSpeed;
+                    b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
+                }
+
+               
+            }
+
+            
         }
 
 
@@ -92,7 +94,7 @@ namespace FirstGame.ent
             {
                 if(!b.Collision)
                 {
-                    foreach (GameWorld.objects.Wall w in map.Wall.Walls)
+                    foreach (GameWorld.objects.Wall w in map.Wall1.Walls)
                     {
                         if (w.SprInf.DestinationRect.Contains(b.Loc.rX + (b.Loc.Direction.X * 2), b.Loc.rY + (b.Loc.Direction.Y * 2)))
                         {
