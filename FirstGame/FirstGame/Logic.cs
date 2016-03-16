@@ -17,6 +17,13 @@ namespace FirstGame
                     -(float)Math.Sin(Rotation));
         }
 
+        public static float CalcRot(Vector2 Direction)
+        {
+
+            return (float)Math.Atan2(Direction.X, -Direction.Y);
+
+        }
+
         public static Rectangle Gridiffy(int LocX, int LocY)
         {
             return new Rectangle(LocX * 64, LocY * 64, 64, 64);

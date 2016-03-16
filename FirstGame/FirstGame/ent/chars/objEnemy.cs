@@ -12,12 +12,15 @@ namespace FirstGame.ent.chars
     {
         public List<Enemy> Enemies { get; set; }
 
+        private entProp.Location DestLoc;
+
         public void UpdateEnemies(GameTime gameTime)
         {
             foreach (Enemy e in Enemies)
             {
-                if (e.Loc)
+                if (true)
                 {
+
 
                 }
             }
