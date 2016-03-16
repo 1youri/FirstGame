@@ -30,5 +30,22 @@ namespace FirstGame.ent.Attacks
         {
             Bullets.Add(new insBullet(Loc, Direction, SprInf));
         }
+
+        public void UpdateBullet(GameTime gameTime)
+        {
+            foreach (insBullet b in Bullets.ToArray())
+            {
+                if (!b.Collision)
+                {
+                    b.Loc.X += b.Loc.Direction.X * Properties.MoveSpeed;
+                    b.Loc.Y += b.Loc.Direction.Y * Properties.MoveSpeed;
+                    b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
+                }
+                if (b.Break)
+                {
+                    Bullets.Remove(b);
+                }
+            }
+        }
     }
 }

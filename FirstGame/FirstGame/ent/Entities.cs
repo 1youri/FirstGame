@@ -12,7 +12,7 @@ namespace FirstGame.ent
     class Entities
     {
         public Player player { get; set; }
-        public List<chars.Enemy> Enemies { get; set; }
+        public chars.objEnemy Enemy { get; set; }
         public Attacks.objBullet Bullet { get; set; }
 
         private bool MouseDown;
@@ -22,7 +22,7 @@ namespace FirstGame.ent
             MouseDown = false;
 
             player = new Player(1.5);
-            Bullet = new Attacks.objBullet(5,50);
+            Bullet = new Attacks.objBullet(8,100);
         }
 
         public void LoadEntities(ContentManager content)
@@ -34,7 +34,7 @@ namespace FirstGame.ent
                 content.Load<Texture2D>("characters\\player3.png")
             };
 
-            Bullet.Sprite = content.Load<Texture2D>("entities//bullet1.png");
+            Bullet.Sprite = content.Load<Texture2D>("entities\\bullet1.png");
         }
 
         public void UpdateEntities(GameTime gameTime, GameWorld.Map map)
@@ -44,7 +44,6 @@ namespace FirstGame.ent
             player.PlayerMove(mouse, map);
             if (mouse.LeftButton == ButtonState.Pressed && MouseDown == false && player.Properties.CoolDown < gameTime.TotalGameTime.TotalMilliseconds)
             {
-
                 Vector2 bulletDirection = Logic.CalcVector(-player.Loc.Rotation);
 
                 Bullet.CreateBullet(
@@ -58,21 +57,11 @@ namespace FirstGame.ent
             else if (mouse.LeftButton == ButtonState.Released) MouseDown = false;
 
             Checkcollision(map);
-            foreach (Attacks.insBullet b in Bullet.Bullets.ToArray())
-            {
-                if(!b.Collision)
-                {
-                    b.Loc.X += b.Loc.Direction.X * Bullet.Properties.MoveSpeed;
-                    b.Loc.Y += b.Loc.Direction.Y * Bullet.Properties.MoveSpeed;
-                    b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
-                }
-                if (b.Break)
-                {
-                    Bullet.Bullets.Remove(b);
-                }
-            }
+            Bullet.UpdateBullet(gameTime);
 
-            
+            Enemy.UpdateEnemies(gameTime);
+
+
         }
 
 

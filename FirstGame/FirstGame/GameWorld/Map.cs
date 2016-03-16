@@ -13,13 +13,14 @@ namespace FirstGame.GameWorld
     {
         public List<Cell> Cells { get; set; }
         public Cell CurrentCell { get; set; }
-        
 
+        private bool mousedown;
 
         public Map()
         {
             Cells = CellCreation.CreateCells();
-            CurrentCell = Cells[0];
+            CurrentCell = CellCreation.LoadFromFile("1");
+            mousedown = false;
         }
 
         public void LoadMap(ContentManager content)
@@ -28,11 +29,19 @@ namespace FirstGame.GameWorld
             {
                 c.LoadCell(content);
             }
+            CurrentCell.LoadCell(content);
         }
 
         public void UpdateMap(GameTime gameTime)
         {
+            MouseState mouse = Mouse.GetState();
 
+            if (mouse.RightButton == ButtonState.Pressed && !mousedown && FirstGame.mapcreation == true)
+            {
+                CurrentCell = CellCreation.updateMapFile(CurrentCell, mouse, "1", "1");
+                mousedown = true;
+            }
+            else if (mouse.RightButton == ButtonState.Released) mousedown = false;
         }
 
         public void DrawMap(SpriteBatch spriteBatch)

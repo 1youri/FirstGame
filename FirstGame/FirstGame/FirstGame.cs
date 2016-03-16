@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -20,6 +21,8 @@ namespace FirstGame
         Texture2D CrossHair;
         Texture2D DebugSelected;
         SpriteFont font;
+        public static bool debugmode;
+        public static bool mapcreation;
 
         public FirstGame()
         {
@@ -41,17 +44,19 @@ namespace FirstGame
 
             base.Initialize();
 
+            debugmode = true;
+            mapcreation = true;
 
-            //graphics.PreferredBackBufferWidth = 1920;
-            //graphics.PreferredBackBufferHeight = 1080;
 
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
 
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            //graphics.PreferredBackBufferWidth = 1280;
+            //graphics.PreferredBackBufferHeight = 720;
 
 
             graphics.ApplyChanges();
-            this.graphics.IsFullScreen = false;
+            this.graphics.IsFullScreen = true;
             IsMouseVisible = false;
             this.graphics.ApplyChanges();
         }
@@ -68,7 +73,7 @@ namespace FirstGame
             world.LoadWorld(Content);
             CrossHair = Content.Load<Texture2D>("crosshair.png");
             DebugSelected = Content.Load<Texture2D>("Selected.png");
-            font = Content.Load<SpriteFont>("myFont");
+            font = Content.Load<SpriteFont>("test");
 
             // TODO: use this.Content to load your game content here
         }
@@ -118,8 +123,14 @@ namespace FirstGame
             
             MouseState mouse = Mouse.GetState();
             spriteBatch.Draw(CrossHair, new Rectangle(mouse.X-16, mouse.Y-16, 32, 32), Color.White);
-            spriteBatch.Draw(DebugSelected, Logic.Gridiffy((int)Math.Floor((double)(mouse.X / 64)), (int)Math.Floor((double)(mouse.Y / 64))), Color.White);
-            spriteBatch.DrawString(font, "test", new Vector2(0, 0), Color.Black);
+
+            if(debugmode)
+            {
+                spriteBatch.Draw(DebugSelected, Logic.Gridiffy((int)Math.Floor((double)(mouse.X / 64)), (int)Math.Floor((double)(mouse.Y / 64))), Color.White);
+                spriteBatch.DrawString(font, (int)Math.Floor((double)(mouse.X / 64)) + ", " + (int)Math.Floor((double)(mouse.Y / 64)), new Vector2(10, 10), Color.Black);
+            }
+            
+            
 
             
 

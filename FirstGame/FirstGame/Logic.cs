@@ -21,6 +21,23 @@ namespace FirstGame
         {
             return new Rectangle(LocX * 64, LocY * 64, 64, 64);
         }
+        
+        
+
+        public static string[] createemptystring()
+        {
+            string[] returnarray = new string[16];
+            for (int i = 0; i < 16; i++)
+            {
+                returnarray[i] = "";
+                for (int j = 0; i < 29; i++)
+                {
+                    returnarray[i] += 0;
+                }
+            }
+
+            return returnarray;
+        }
 
     }
 }
