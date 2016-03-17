@@ -37,7 +37,7 @@ namespace FirstGame.GameWorld
 
             for (int y = 0; y < 17; y++)
             {
-                for (int x = 0; x < 29; x++)
+                for (int x = 0; x < 30; x++)
                 {
                     if (filedata[y].Substring(x, 1) == "1")
                     {
@@ -46,6 +46,11 @@ namespace FirstGame.GameWorld
                     if (filedata[y].Substring(x, 1) == "2")
                     {
                         returncell.WallStone.Walls.Add(new objects.Wall(new SprInfo(new Rectangle(0, 0, 32, 32), new Vector2(25, 25), Logic.Gridiffy(x, y))));
+                    }
+                    if (filedata[y].Substring(x, 1) == "z")
+                    {
+                        Rectangle temp = Logic.Gridiffy(x, y);
+                        returncell.ZombieLocs.Add(new ent.entProp.Location(temp.X, temp.Y, 0));
                     }
 
                 }

@@ -13,11 +13,15 @@ namespace FirstGame.GameWorld
     {
         public objects.Wallobj WallWood { get; set; }
         public objects.Wallobj WallStone { get; set; }
-        
+        public List<ent.entProp.Location> ZombieLocs { get; set; }
+
         public Cell(objects.Wallobj WallWood, objects.Wallobj WallStone)
         {
             this.WallWood = WallWood;
             this.WallStone = WallStone;
+
+
+            ZombieLocs = new List<ent.entProp.Location>();
         }
 
         public void LoadCell(ContentManager content)

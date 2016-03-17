@@ -16,13 +16,15 @@ namespace FirstGame.ent
         public Attacks.objBullet Bullet { get; set; }
 
         private bool MouseDown;
-
+        private bool firstcycle;
         public Entities()
         {
             MouseDown = false;
+            firstcycle = true;
 
-            player = new Player(1.5);
+            player = new Player(15);
             Bullet = new Attacks.objBullet(8,100);
+            Enemy = new ent.chars.objEnemy(1000, 1, 500,500);
         }
 
         public void LoadEntities(ContentManager content)
@@ -35,10 +37,13 @@ namespace FirstGame.ent
             };
 
             Bullet.Sprite = content.Load<Texture2D>("entities\\bullet1.png");
+            Enemy.Sprite = content.Load<Texture2D>("characters\\zombie1.png");
         }
 
         public void UpdateEntities(GameTime gameTime, GameWorld.Map map)
         {
+            if (firstcycle) InsertEnemies(map.CurrentCell);
+
             MouseState mouse = Mouse.GetState();
 
             player.PlayerMove(mouse, map);
@@ -59,9 +64,9 @@ namespace FirstGame.ent
             Checkcollision(map);
             Bullet.UpdateBullet(gameTime);
 
-            Enemy.UpdateEnemies(gameTime);
+            Enemy.UpdateEnemies(gameTime, map, player.Loc);
 
-
+            firstcycle = false;
         }
 
 
@@ -71,6 +76,12 @@ namespace FirstGame.ent
             foreach (Attacks.insBullet b in Bullet.Bullets)
             {
                 spriteBatch.Draw(Bullet.Sprite, b.SprInf.DestinationRect, b.SprInf.SourceRect, Color.White, b.Loc.Rotation, b.SprInf.Origin, SpriteEffects.None, 0);
+            }
+            foreach (chars.Enemy e in Enemy.Enemies)
+            {
+                spriteBatch.Draw(Enemy.Sprite, e.SprInf.DestinationRect, e.SprInf.SourceRect, Color.White, e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
+
+                //spriteBatch.Draw(Enemy.Sprite, new Rectangle((int)(e.Loc.rX + e.MoveVector.X * 200), (int)(e.Loc.rY + e.MoveVector.Y * 200), 10, 10), Color.Red);
             }
             spriteBatch.Draw(player.Sprites[player.getFrame()], player.SprInf.DestinationRect, player.SprInf.SourceRect, Color.White, player.Loc.Rotation, player.SprInf.Origin, SpriteEffects.None, 0);
 
@@ -101,6 +112,16 @@ namespace FirstGame.ent
                         }
                     }
                 }
+            }
+        }
+
+        public void InsertEnemies(GameWorld.Cell cell)
+        {
+            Random rnd = new Random();
+            foreach (entProp.Location zombloc in cell.ZombieLocs)
+            {
+                int sdev = Enemy.Properties.BaseUpdateSpeed + rnd.Next(0, Enemy.Properties.sDevUpdateSpeed);
+                Enemy.Enemies.Add(new chars.Enemy(zombloc, sdev));
             }
         }
 
