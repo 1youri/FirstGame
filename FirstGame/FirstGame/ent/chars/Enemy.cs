@@ -21,10 +21,13 @@ namespace FirstGame.ent.chars
         public bool foundPlayer { get; set; }
         public bool seesPlayer { get; set; }
         public bool Update { get; set; }
+        public double MoveSpeed { get; set; }
+        public int CoolDownTime { get; set; }
 
-        public Enemy(entProp.Location Loc, int updateSpeed)
+        public Enemy(entProp.Location Loc, int updateSpeed, double MoveSpeed)
         {
             this.UpdateSpeed = updateSpeed;
+            this.MoveSpeed = MoveSpeed;
             this.Loc = Loc;
             this.SprInf = new SprInfo(new Rectangle(0, 0, 64, 32), new Vector2(18, 16), new Rectangle(Loc.rX, Loc.rY, 64, 32));
             this.Destination = new entProp.Location(Loc.rX, Loc.rY, 0);

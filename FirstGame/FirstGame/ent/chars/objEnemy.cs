@@ -35,12 +35,12 @@ namespace FirstGame.ent.chars
         }
 
 
-        public void UpdateEnemies(GameTime gameTime, GameWorld.Map map, entProp.Location playerLoc)
+        public Player UpdateEnemies(GameTime gameTime, GameWorld.Map map, Player player)
         {
 
             foreach (Enemy e in Enemies)
             {
-                enemy2player = new Vector2((float)(playerLoc.X - e.Loc.X), (float)(playerLoc.Y - e.Loc.Y));
+                enemy2player = new Vector2((float)(player.Loc.X - e.Loc.X), (float)(player.Loc.Y - e.Loc.Y));
                 steps = (int)Math.Ceiling(enemy2player.Length() / 32);
                 enemy2player = Vector2.Normalize(enemy2player);
                 testpoint = new Point(e.Loc.rX, e.Loc.rY);
@@ -64,13 +64,13 @@ namespace FirstGame.ent.chars
                             if (w.SprInf.DestinationRect.Contains(testpoint))
                             {
                                 e.seesPlayer = false;
-                                if (!e.foundPlayer)
+                                if (!e.foundPlayer || e.destVector.Length() < 50)
                                 {
                                     e.Destination.X = e.Loc.X + (((rnd.Next(0, 200) - 100))/* * 150*/);
                                     e.Destination.Y = e.Loc.Y + (((rnd.Next(0, 200) - 100))/* * 150*/);
                                     e.MoveVector = Vector2.Normalize(new Vector2(e.Destination.rX - e.Loc.rX, e.Destination.rY - e.Loc.rY));
                                 }
-                                
+                                steps = -10;
                             }
                         }
 
@@ -78,12 +78,12 @@ namespace FirstGame.ent.chars
                         testpoint = new Point((int)(testpoint.X + enemy2player.X * 32), (int)(testpoint.Y + enemy2player.Y * 32));
 
                     }
-                    if (steps <= 0 && e.Destination.rX == -1) e.seesPlayer = true;
+                    if (steps == 0) e.seesPlayer = true;
 
                     if (e.seesPlayer)
                     {
-                        e.Destination.X = playerLoc.X;
-                        e.Destination.Y = playerLoc.Y;
+                        e.Destination.X = player.Loc.X;
+                        e.Destination.Y = player.Loc.Y;
                         e.foundPlayer = true;
                         e.MoveVector = Vector2.Normalize(new Vector2(e.Destination.rX - e.Loc.rX, e.Destination.rY - e.Loc.rY));
                     }
@@ -96,23 +96,31 @@ namespace FirstGame.ent.chars
 
                 foreach (GameWorld.objects.Wall w in map.CurrentCell.WallWood.Walls)
                 {
-                    if (w.SprInf.DestinationRect.Contains((int)(e.Loc.X + e.MoveVector.X * Properties.MoveSpeed), e.Loc.rY))
+                    if (w.SprInf.DestinationRect.Contains((int)(e.Loc.X + e.MoveVector.X * Properties.MoveSpeed * 2), e.Loc.rY))
                     {
                         e.MoveVector = new Vector2(0, e.MoveVector.Y);
                     }
-                    if (w.SprInf.DestinationRect.Contains(e.Loc.rX, (int)(e.Loc.Y + e.MoveVector.Y * Properties.MoveSpeed)))
+                    if (w.SprInf.DestinationRect.Contains(e.Loc.rX, (int)(e.Loc.Y + e.MoveVector.Y * Properties.MoveSpeed * 2)))
                     {
                         e.MoveVector = new Vector2(e.MoveVector.X, 0);
                     }
                 }
                 
-                e.Loc.X = e.Loc.X + e.MoveVector.X * Properties.MoveSpeed;
-                e.Loc.Y = e.Loc.Y + e.MoveVector.Y * Properties.MoveSpeed;
+                e.Loc.X = e.Loc.X + e.MoveVector.X * Properties.MoveSpeed * e.MoveSpeed;
+                e.Loc.Y = e.Loc.Y + e.MoveVector.Y * Properties.MoveSpeed * e.MoveSpeed;
                 e.Loc.Rotation = (float)(Logic.CalcRot(e.MoveVector) - Math.PI * 0.5);
                 
 
                 e.SprInf.DestinationRect = new Rectangle(e.Loc.rX, e.Loc.rY, 64,32);
+
+                if (new Vector2(player.Loc.rX - e.Loc.rX, player.Loc.rY - e.Loc.rY).Length() < 30)
+                {
+                    player.HP--;
+                    //e.CoolDownTime = Properties.CoolDown + gameTime.
+                }
             }
+
+            return player;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace FirstGame.ent
 
         public SprInfo SprInf { get; set; }
         public entProp.EntityProperties Properties { get; set; }
+        public int HP { get; set; }
 
         private int walkCounter;
         private int frameSwitch;

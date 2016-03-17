@@ -22,7 +22,7 @@ namespace FirstGame.ent
             MouseDown = false;
             firstcycle = true;
 
-            player = new Player(15);
+            player = new Player(1.5);
             Bullet = new Attacks.objBullet(8,100);
             Enemy = new ent.chars.objEnemy(1000, 1, 500,500);
         }
@@ -64,7 +64,7 @@ namespace FirstGame.ent
             Checkcollision(map);
             Bullet.UpdateBullet(gameTime);
 
-            Enemy.UpdateEnemies(gameTime, map, player.Loc);
+            Enemy.UpdateEnemies(gameTime, map, player);
 
             firstcycle = false;
         }
@@ -121,7 +121,7 @@ namespace FirstGame.ent
             foreach (entProp.Location zombloc in cell.ZombieLocs)
             {
                 int sdev = Enemy.Properties.BaseUpdateSpeed + rnd.Next(0, Enemy.Properties.sDevUpdateSpeed);
-                Enemy.Enemies.Add(new chars.Enemy(zombloc, sdev));
+                Enemy.Enemies.Add(new chars.Enemy(zombloc, sdev, (double)(rnd.Next(30,150)/100.0)));
             }
         }
 
