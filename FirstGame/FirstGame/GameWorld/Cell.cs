@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace FirstGame.GameWorld
 {
-    class Cell
+    public class Cell
     {
         public objects.Wallobj WallWood { get; set; }
         public objects.Wallobj WallStone { get; set; }

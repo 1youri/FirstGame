@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FirstGame.ent.Attacks
 {
-    class objBullet
+    public class objBullet
     {
         public Texture2D Sprite { get; set; }
         public entProp.EntityProperties Properties { get; set; }

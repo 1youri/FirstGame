@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FirstGame.GameWorld.objects
 {
-    class Wallobj
+    public class Wallobj
     {
         public List<Wall> Walls { get; set; }
         public Texture2D Sprite { get; set; }

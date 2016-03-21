@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FirstGame.GameWorld.objects
 {
-    class Wall
+    public class Wall
     {
         public SprInfo SprInf { get; set; }
 

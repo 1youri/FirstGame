@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace FirstGame.GameWorld
 {
-    class Map
+    public class Map
     {
         public List<Cell> Cells { get; set; }
         public Cell CurrentCell { get; set; }

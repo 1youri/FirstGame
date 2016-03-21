@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FirstGame.ent.chars
 {
-    class objEnemy
+    public class objEnemy
     {
         public List<Enemy> Enemies { get; set; }
         public ent.entProp.EntityProperties Properties { get; set; }
@@ -113,10 +113,10 @@ namespace FirstGame.ent.chars
 
                 e.SprInf.DestinationRect = new Rectangle(e.Loc.rX, e.Loc.rY, 64,32);
 
-                if (new Vector2(player.Loc.rX - e.Loc.rX, player.Loc.rY - e.Loc.rY).Length() < 30)
+                if (new Vector2(player.Loc.rX - e.Loc.rX, player.Loc.rY - e.Loc.rY).Length() < 30 && e.CoolDownTime < gameTime.TotalGameTime.Milliseconds)
                 {
                     player.HP--;
-                    //e.CoolDownTime = Properties.CoolDown + gameTime.
+                    e.CoolDownTime = Properties.CoolDown + gameTime.TotalGameTime.Milliseconds;
                 }
             }
 

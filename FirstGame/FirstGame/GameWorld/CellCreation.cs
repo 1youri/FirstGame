@@ -10,7 +10,7 @@ using System.IO;
 
 namespace FirstGame.GameWorld
 {
-    class CellCreation
+    public class CellCreation
     {
         public static Cell updateMapFile(Cell CurrentCell, MouseState mouse, string Block, string filename)
         {

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace FirstGame
 {
-    class World
+    public class World
     {
         public ent.Entities Entities { get; set; }
         public GameWorld.Map map { get; set; }
@@ -21,10 +21,10 @@ namespace FirstGame
             map = new GameWorld.Map();
         }
 
-        public void LoadWorld(ContentManager content)
+        public void LoadWorld(ContentManager Content)
         {
-            Entities.LoadEntities(content);
-            map.LoadMap(content);
+            Entities.LoadEntities(Content);
+            map.LoadMap(Content);
         }
 
         public void UpdateWorld(GameTime gameTime)

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace FirstGame.ent.chars
 {
-    class Enemy
+    public class Enemy
     {
         public entProp.Location Loc { get; set; }
         public SprInfo SprInf { get; set; }

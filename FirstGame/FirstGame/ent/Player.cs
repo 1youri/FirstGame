@@ -8,21 +8,21 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FirstGame.ent
 {
-    class Player
+    public class Player
     {
         public entProp.Location Loc { get; set; }
         public List<Texture2D> Sprites { get; set; }
 
         public SprInfo SprInf { get; set; }
         public entProp.EntityProperties Properties { get; set; }
-        public int HP { get; set; }
+        public double HP { get; set; }
 
         private int walkCounter;
         private int frameSwitch;
         private Vector2 walkDirection;
 
         private Vector2 nanVector;
-        public Player(double MoveSpeed)
+        public Player(double MoveSpeed, double maxhp)
         {
             Properties = new entProp.EntityProperties();
             Loc = new entProp.Location(100, 100, 0);
@@ -34,6 +34,8 @@ namespace FirstGame.ent
 
             Properties.MoveSpeed = MoveSpeed;
             Properties.CoolDown = 0;
+            Properties.MaxHP = maxhp;
+            HP = maxhp;
         }
 
         public void PlayerMove(MouseState mouse, GameWorld.Map map)

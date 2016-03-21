@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FirstGame.ent.entProp
 {
-    class Location
+    public class Location
     {
         public double X { get; set; }
         public double Y { get; set; }

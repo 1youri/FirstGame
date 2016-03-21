@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace FirstGame.ent
 {
-    class Entities
+    public class Entities
     {
         public Player player { get; set; }
         public chars.objEnemy Enemy { get; set; }
@@ -22,22 +22,22 @@ namespace FirstGame.ent
             MouseDown = false;
             firstcycle = true;
 
-            player = new Player(1.5);
+            player = new Player(1.5, 30);
             Bullet = new Attacks.objBullet(8,100);
-            Enemy = new ent.chars.objEnemy(1000, 1, 500,500);
+            Enemy = new ent.chars.objEnemy(100, 1, 500,500);
         }
 
-        public void LoadEntities(ContentManager content)
+        public void LoadEntities(ContentManager Content)
         {
             player.Sprites = new List<Texture2D>()
             {
-                content.Load<Texture2D>("characters\\player1.png"),
-                content.Load<Texture2D>("characters\\player2.png"),
-                content.Load<Texture2D>("characters\\player3.png")
+                Content.Load<Texture2D>("characters\\player1.png"),
+                Content.Load<Texture2D>("characters\\player2.png"),
+                Content.Load<Texture2D>("characters\\player3.png")
             };
 
-            Bullet.Sprite = content.Load<Texture2D>("entities\\bullet1.png");
-            Enemy.Sprite = content.Load<Texture2D>("characters\\zombie1.png");
+            Bullet.Sprite = Content.Load<Texture2D>("entities\\bullet1.png");
+            Enemy.Sprite = Content.Load<Texture2D>("characters\\zombie1.png");
         }
 
         public void UpdateEntities(GameTime gameTime, GameWorld.Map map)

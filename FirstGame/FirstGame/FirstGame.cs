@@ -47,6 +47,7 @@ namespace FirstGame
             debugmode = true;
             mapcreation = true;
 
+            this.Window.Position = new Point(0, 0);
 
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FirstGame
 {
-    class Logic
+    public class Logic
     {
         public static Vector2 CalcVector(float Rotation)
         {
@@ -31,20 +31,20 @@ namespace FirstGame
         
         
 
-        public static string[] createemptystring()
-        {
-            string[] returnarray = new string[16];
-            for (int i = 0; i < 16; i++)
-            {
-                returnarray[i] = "";
-                for (int j = 0; i < 29; i++)
-                {
-                    returnarray[i] += 0;
-                }
-            }
+        //public static string[] createemptystring()
+        //{
+        //    string[] returnarray = new string[16];
+        //    for (int i = 0; i < 16; i++)
+        //    {
+        //        returnarray[i] = "";
+        //        for (int j = 0; i < 29; i++)
+        //        {
+        //            returnarray[i] += 0;
+        //        }
+        //    }
 
-            return returnarray;
-        }
+        //    return returnarray;
+        //}
 
     }
 }
