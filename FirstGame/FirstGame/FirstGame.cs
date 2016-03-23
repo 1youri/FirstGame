@@ -14,10 +14,12 @@ namespace FirstGame
     /// </summary>
     public class FirstGame : Game
     {
+        public Microsoft.Xna.Framework.Content.ContentManager getContentManager { get { return Content; } }
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        World world;
+        
+        public World world { get; set; }
         Texture2D CrossHair;
         Texture2D DebugSelected;
         SpriteFont font;
