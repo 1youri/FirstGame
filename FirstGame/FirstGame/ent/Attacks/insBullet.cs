@@ -8,10 +8,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FirstGame.ent.Attacks
 {
-    public class insBullet
+    public class insBullet : Entity
     {
-        public entProp.Location Loc { get; set; }
-        public SprInfo SprInf { get; set; }
         public bool Collision { get; set; }
         public bool Break { get; set; }
 

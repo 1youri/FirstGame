@@ -9,13 +9,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace FirstGame.ent.chars
 {
-    public class Enemy
+    public class Enemy : Character
     {
-        public entProp.Location Loc { get; set; }
-        public SprInfo SprInf { get; set; }
-        public entProp.Location Destination { get; set; }
-        public Vector2 MoveVector { get; set; }
-        public Vector2 destVector { get; set; }
+        
         public int UpdateSpeed { get; set; }
         public int UpdateTime { get; set; }
         public bool foundPlayer { get; set; }

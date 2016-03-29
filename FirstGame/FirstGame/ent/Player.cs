@@ -8,12 +8,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FirstGame.ent
 {
-    public class Player
+    public class Player : Entity
     {
-        public entProp.Location Loc { get; set; }
         public List<Texture2D> Sprites { get; set; }
-
-        public SprInfo SprInf { get; set; }
+        
         public entProp.EntityProperties Properties { get; set; }
         public double HP { get; set; }
 
@@ -74,18 +72,26 @@ namespace FirstGame.ent
 
         public Vector2 CheckPlayerCollision(GameWorld.Map map, Vector2 walkDirection)
         {
+            Vector2 calcdir = new Vector2((float)Math.Round(walkDirection.X),(float)Math.Round(walkDirection.Y));
+            Rectangle playerrect = new Rectangle(Loc.rX - 15, Loc.rY - 15, 30, 30);
+
             foreach (GameWorld.objects.Wall w in map.CurrentCell.WallWood.Walls)
             {
-                if (w.SprInf.DestinationRect.Contains(Loc.rX + (int)(walkDirection.X * Properties.MoveSpeed), Loc.rY))
-                {
-                    walkDirection.X = 0;
-                }
-                if (w.SprInf.DestinationRect.Contains(Loc.rX, Loc.rY + (int)(walkDirection.Y * Properties.MoveSpeed)))
-                {
-                    walkDirection.Y = 0;
-                }
 
-               
+                if (playerrect.Intersects(w.SprInf.DestinationRect))
+                {
+                    //playerrect.Top
+                }
+                //if (w.SprInf.DestinationRect.Contains(Loc.rX + (int)(walkDirection.X * Properties.MoveSpeed) + 15, Loc.rY))
+                //{
+                //    walkDirection.X = 0;
+                //}
+                //if (w.SprInf.DestinationRect.Contains(Loc.rX, Loc.rY + (int)(walkDirection.Y * Properties.MoveSpeed) + 15))
+                //{
+                //    walkDirection.Y = 0;
+                //}
+
+
             }
             return walkDirection;
         }

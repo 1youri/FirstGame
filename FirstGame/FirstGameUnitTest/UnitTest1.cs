@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FirstGame;
-using Rhino.Mocks;
 
 namespace FirstGameUnitTest
 {
@@ -33,13 +32,40 @@ namespace FirstGameUnitTest
 
         }
         [TestMethod]
-        public void LoadWorld()
+        public void playermove()
         {
+            FirstGame.ent.Player Player = new FirstGame.ent.Player(5, 20);
+            Player.PlayerMove(Mouse.GetState(), new FirstGame.GameWorld.Map());
+            Player.getFrame();
+            
+            FirstGame.GameWorld.Map map = new FirstGame.GameWorld.Map();
+            Player.Loc.X = map.CurrentCell.WallWood.Walls[20].SprInf.DestinationRect.Center.X;
+            Player.Loc.Y = map.CurrentCell.WallWood.Walls[20].SprInf.DestinationRect.Center.Y;
+            Vector2 testvect = Player.CheckPlayerCollision(new FirstGame.GameWorld.Map(), new Vector2(5, 5));
 
-            ContentManager Content = MockRepository.GenerateStub<ContentManager>();
-            World world = new World();
 
-            world.LoadWorld(Content);
+
+            Assert.AreEqual(20, Player.HP, "HPCheck");
+            Assert.AreEqual(5, testvect.X, "vectorerror");
+            Assert.AreEqual(1312, Player.Loc.rX, "location incorrect");
+
+            
+        }
+
+        [TestMethod]
+        public void testEnemy()
+        {
+            FirstGame.ent.chars.Enemy enemy = new FirstGame.ent.chars.Enemy(new FirstGame.ent.entProp.Location(200,200,5),100,5);
+            enemy.CoolDownTime = 500;
+            enemy.UpdateTime = 500;
+
+            Assert.AreEqual(enemy.CoolDownTime, 500);
+            Assert.AreEqual(enemy.MoveSpeed, 5);
+            Assert.AreEqual(enemy.Update, true);
+            Assert.AreEqual(enemy.UpdateSpeed, 100);
+            Assert.AreEqual(enemy.UpdateTime, 500);
+            Assert.AreEqual(enemy.foundPlayer, false);
+            Assert.AreEqual(enemy.seesPlayer, false);
         }
     }
 }

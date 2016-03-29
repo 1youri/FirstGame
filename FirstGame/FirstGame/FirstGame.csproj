@@ -55,8 +55,10 @@
   <ItemGroup>
     <Compile Include="ent\Attacks\insBullet.cs" />
     <Compile Include="ent\Attacks\objBullet.cs" />
+    <Compile Include="ent\chars\Character.cs" />
     <Compile Include="ent\chars\Enemy.cs" />
     <Compile Include="ent\chars\objEnemy.cs" />
+    <Compile Include="ent\Entity.cs" />
     <Compile Include="ent\Entities.cs" />
     <Compile Include="ent\entProp\EntityProperties.cs" />
     <Compile Include="GameWorld\CellCreation.cs" />
