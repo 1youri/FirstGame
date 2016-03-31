@@ -84,6 +84,7 @@ namespace FirstGame.ent
                 //spriteBatch.Draw(Enemy.Sprite, new Rectangle((int)(e.Loc.rX + e.MoveVector.X * 200), (int)(e.Loc.rY + e.MoveVector.Y * 200), 10, 10), Color.Red);
             }
             spriteBatch.Draw(player.Sprites[player.getFrame()], player.SprInf.DestinationRect, player.SprInf.SourceRect, Color.White, player.Loc.Rotation, player.SprInf.Origin, SpriteEffects.None, 0);
+            
 
 
         }

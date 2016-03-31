@@ -23,6 +23,7 @@ namespace FirstGame
         Texture2D CrossHair;
         Texture2D DebugSelected;
         SpriteFont font;
+        Texture2D empty;
         public static bool debugmode;
         public static bool mapcreation;
 
@@ -78,6 +79,8 @@ namespace FirstGame
             DebugSelected = Content.Load<Texture2D>("Selected.png");
             font = Content.Load<SpriteFont>("test");
 
+            empty = Content.Load<Texture2D>("empty.png");
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -132,11 +135,11 @@ namespace FirstGame
                 spriteBatch.Draw(DebugSelected, Logic.Gridiffy((int)Math.Floor((double)(mouse.X / 64)), (int)Math.Floor((double)(mouse.Y / 64))), Color.White);
                 spriteBatch.DrawString(font, (int)Math.Floor((double)(mouse.X / 64)) + ", " + (int)Math.Floor((double)(mouse.Y / 64)), new Vector2(10, 10), Color.Black);
             }
-            
-            
 
-            
-
+            spriteBatch.Draw(empty, new Rectangle(world.Entities.player.testcoll1, new Point(5, 5)), new Rectangle(0, 0, 4, 4), Color.Red, 0, new Vector2(2, 2), SpriteEffects.None, 0);
+            spriteBatch.Draw(empty, new Rectangle(world.Entities.player.testcoll2, new Point(5, 5)), new Rectangle(0, 0, 4, 4), Color.Red, 0, new Vector2(2, 2), SpriteEffects.None, 0);
+            spriteBatch.Draw(empty, new Rectangle(world.Entities.player.testcoll3, new Point(5, 5)), new Rectangle(0, 0, 4, 4), Color.Red, 0, new Vector2(2, 2), SpriteEffects.None, 0);
+            this.Window.Title = "X = " + world.Entities.player.testcoll2.X + ", Y = " + world.Entities.player.testcoll2.Y;
             spriteBatch.End();
 
 

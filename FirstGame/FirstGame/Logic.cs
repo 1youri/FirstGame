@@ -29,22 +29,27 @@ namespace FirstGame
             return new Rectangle(LocX * 64, LocY * 64, 64, 64);
         }
         
-        
+        public static Vector2 vectorswitch(Vector2 vector)
+        {
+            if (vector.X != 0)
+            {
+                vector.X = 0;
+            }
+            else
+            {
+                vector.X = 1;
+            }
+            if (vector.Y != 0)
+            {
+                vector.Y = 0;
+            }
+            else
+            {
+                vector.Y = 1;
+            }
 
-        //public static string[] createemptystring()
-        //{
-        //    string[] returnarray = new string[16];
-        //    for (int i = 0; i < 16; i++)
-        //    {
-        //        returnarray[i] = "";
-        //        for (int j = 0; i < 29; i++)
-        //        {
-        //            returnarray[i] += 0;
-        //        }
-        //    }
-
-        //    return returnarray;
-        //}
+            return vector;
+        }
 
     }
 }

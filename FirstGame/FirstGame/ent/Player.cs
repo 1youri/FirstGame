@@ -15,6 +15,11 @@ namespace FirstGame.ent
         public entProp.EntityProperties Properties { get; set; }
         public double HP { get; set; }
 
+
+        public Point testcoll1;
+        public Point testcoll2;
+        public Point testcoll3;
+
         private int walkCounter;
         private int frameSwitch;
         private Vector2 walkDirection;
@@ -73,23 +78,20 @@ namespace FirstGame.ent
         public Vector2 CheckPlayerCollision(GameWorld.Map map, Vector2 walkDirection)
         {
             Vector2 calcdir = new Vector2((float)Math.Round(walkDirection.X),(float)Math.Round(walkDirection.Y));
+
+            testcoll1 = new Point(Loc.rX + (int)(walkDirection.X * 20), Loc.rY + (int)(walkDirection.Y * 20));
+
+
+
             Rectangle playerrect = new Rectangle(Loc.rX - 15, Loc.rY - 15, 30, 30);
 
             foreach (GameWorld.objects.Wall w in map.CurrentCell.WallWood.Walls)
             {
-
-                if (playerrect.Intersects(w.SprInf.DestinationRect))
+                if (w.SprInf.DestinationRect.Contains(testcoll1))
                 {
-                    //playerrect.Top
+                    walkDirection.X = 0;
+                    walkDirection.Y = 0;
                 }
-                //if (w.SprInf.DestinationRect.Contains(Loc.rX + (int)(walkDirection.X * Properties.MoveSpeed) + 15, Loc.rY))
-                //{
-                //    walkDirection.X = 0;
-                //}
-                //if (w.SprInf.DestinationRect.Contains(Loc.rX, Loc.rY + (int)(walkDirection.Y * Properties.MoveSpeed) + 15))
-                //{
-                //    walkDirection.Y = 0;
-                //}
 
 
             }
