@@ -22,9 +22,9 @@ namespace FirstGame.ent
             MouseDown = false;
             firstcycle = true;
 
-            player = new Player(1.5, 30);
+            player = new Player(2, 1000);
             Bullet = new Attacks.objBullet(8,100);
-            Enemy = new ent.chars.objEnemy(100, 1, 500,500);
+            Enemy = new ent.chars.objEnemy(100, 1, 1, 500, 500, 30, 60, 2);
         }
 
         public void LoadEntities(ContentManager Content)
@@ -73,16 +73,18 @@ namespace FirstGame.ent
         public void DrawEntities(SpriteBatch spriteBatch)
         {
 
-            foreach (Attacks.insBullet b in Bullet.Bullets)
-            {
-                spriteBatch.Draw(Bullet.Sprite, b.SprInf.DestinationRect, b.SprInf.SourceRect, Color.White, b.Loc.Rotation, b.SprInf.Origin, SpriteEffects.None, 0);
-            }
+            
             foreach (chars.Enemy e in Enemy.Enemies)
             {
                 spriteBatch.Draw(Enemy.Sprite, e.SprInf.DestinationRect, e.SprInf.SourceRect, Color.White, e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
 
                 //spriteBatch.Draw(Enemy.Sprite, new Rectangle((int)(e.Loc.rX + e.MoveVector.X * 200), (int)(e.Loc.rY + e.MoveVector.Y * 200), 10, 10), Color.Red);
             }
+            foreach (Attacks.insBullet b in Bullet.Bullets)
+            {
+                spriteBatch.Draw(Bullet.Sprite, b.SprInf.DestinationRect, b.SprInf.SourceRect, Color.White, b.Loc.Rotation, b.SprInf.Origin, SpriteEffects.None, 0);
+            }
+
             spriteBatch.Draw(player.Sprites[player.getFrame()], player.SprInf.DestinationRect, player.SprInf.SourceRect, Color.White, player.Loc.Rotation, player.SprInf.Origin, SpriteEffects.None, 0);
             
 
@@ -113,6 +115,16 @@ namespace FirstGame.ent
                         }
                     }
                 }
+
+                foreach (ent.chars.Enemy e in Enemy.Enemies)
+                {
+                    if (new Vector2(b.Loc.rX - e.Loc.rX, b.Loc.rY - e.Loc.rY).Length() < 30 && e.UpdateSpeed != -1)
+                    {
+                        e.HP -= 1;
+                        b.Break = true;
+                        b.Collision = true; 
+                    }
+                }
             }
         }
 
@@ -121,8 +133,15 @@ namespace FirstGame.ent
             Random rnd = new Random();
             foreach (entProp.Location zombloc in cell.ZombieLocs)
             {
-                int sdev = Enemy.Properties.BaseUpdateSpeed + rnd.Next(0, Enemy.Properties.sDevUpdateSpeed);
-                Enemy.Enemies.Add(new chars.Enemy(zombloc, sdev, (double)(rnd.Next(30,150)/100.0)));
+
+                Enemy.Enemies.Add(
+                    new chars.Enemy(
+                        zombloc,
+                        Enemy.Properties.BaseUpdateSpeed + rnd.Next(0, Enemy.Properties.sDevUpdateSpeed),
+                        (Enemy.Properties.BaseMoveSpeed * 100 + rnd.Next(0,(int)(Enemy.Properties.sDevMoveSpeed*100))) / 100,
+                        Enemy.Properties.BaseDamage + rnd.Next(0,Enemy.Properties.sDevDamage),
+                        Enemy.Properties.MaxHP
+                        ));
             }
         }
 

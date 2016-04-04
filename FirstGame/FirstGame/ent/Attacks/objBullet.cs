@@ -20,7 +20,7 @@ namespace FirstGame.ent.Attacks
         {
             Bullets = new List<insBullet>();
             this.Properties = new entProp.EntityProperties();
-            this.Properties.MoveSpeed = MoveSpeed;
+            this.Properties.BaseMoveSpeed = MoveSpeed;
             this.ShootCooldown = Cooldown;
 
             this.Properties.HitboxDistance = 2;
@@ -37,8 +37,8 @@ namespace FirstGame.ent.Attacks
             {
                 if (!b.Collision)
                 {
-                    b.Loc.X += b.Loc.Direction.X * Properties.MoveSpeed;
-                    b.Loc.Y += b.Loc.Direction.Y * Properties.MoveSpeed;
+                    b.Loc.X += b.Loc.Direction.X * Properties.BaseMoveSpeed;
+                    b.Loc.Y += b.Loc.Direction.Y * Properties.BaseMoveSpeed;
                     b.SprInf.DestinationRect = new Rectangle(b.Loc.rX, b.Loc.rY, 8, 4);
                 }
                 if (b.Break)

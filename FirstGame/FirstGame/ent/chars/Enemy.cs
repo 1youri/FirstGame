@@ -19,8 +19,10 @@ namespace FirstGame.ent.chars
         public bool Update { get; set; }
         public double MoveSpeed { get; set; }
         public int CoolDownTime { get; set; }
+        public int Damage { get; set; }
+        public double HP { get; set; }
 
-        public Enemy(entProp.Location Loc, int updateSpeed, double MoveSpeed)
+        public Enemy(entProp.Location Loc, int updateSpeed, double MoveSpeed, int Damage, double HP)
         {
             this.UpdateSpeed = updateSpeed;
             this.MoveSpeed = MoveSpeed;
@@ -31,6 +33,8 @@ namespace FirstGame.ent.chars
             foundPlayer = false;
             Update = true;
             seesPlayer = false;
+            this.Damage = Damage;
+            this.HP = HP;
         }
     }
 }

@@ -35,7 +35,7 @@ namespace FirstGame.ent
             frameSwitch = 20;
             nanVector = Vector2.Normalize(new Vector2(0, 0));
 
-            Properties.MoveSpeed = MoveSpeed;
+            Properties.BaseMoveSpeed = MoveSpeed;
             Properties.CoolDown = 0;
             Properties.MaxHP = maxhp;
             HP = maxhp;
@@ -53,8 +53,8 @@ namespace FirstGame.ent
             if (walkDirection.X.ToString() != "NaN" || walkDirection.X.ToString() != "NaN")
             {
                 CheckPlayerCollision(map, walkDirection);
-                Loc.X += walkDirection.X * Properties.MoveSpeed;
-                Loc.Y += walkDirection.Y * Properties.MoveSpeed;
+                Loc.X += walkDirection.X * Properties.BaseMoveSpeed;
+                Loc.Y += walkDirection.Y * Properties.BaseMoveSpeed;
                 walkCounter++;
             }
             else walkCounter = 0;
@@ -77,14 +77,7 @@ namespace FirstGame.ent
 
         public Vector2 CheckPlayerCollision(GameWorld.Map map, Vector2 walkDirection)
         {
-            Vector2 calcdir = new Vector2((float)Math.Round(walkDirection.X),(float)Math.Round(walkDirection.Y));
-
             testcoll1 = new Point(Loc.rX + (int)(walkDirection.X * 20), Loc.rY + (int)(walkDirection.Y * 20));
-
-
-
-            Rectangle playerrect = new Rectangle(Loc.rX - 15, Loc.rY - 15, 30, 30);
-
             foreach (GameWorld.objects.Wall w in map.CurrentCell.WallWood.Walls)
             {
                 if (w.SprInf.DestinationRect.Contains(testcoll1))
