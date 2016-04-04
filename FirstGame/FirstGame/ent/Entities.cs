@@ -133,7 +133,7 @@ namespace FirstGame.ent
 
                 foreach (ent.chars.Enemy e in Enemy.Enemies)
                 {
-                    if (new Vector2(b.Loc.rX - e.Loc.rX, b.Loc.rY - e.Loc.rY).Length() < 30 && e.UpdateSpeed != -1)
+                    if (!b.Collision && new Vector2(b.Loc.rX - e.Loc.rX, b.Loc.rY - e.Loc.rY).Length() < 30 && e.UpdateSpeed != -1)
                     {
                         e.HP -= 1;
                         b.Break = true;

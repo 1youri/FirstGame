@@ -47,8 +47,8 @@ namespace FirstGame
 
             base.Initialize();
 
-            debugmode = true;
-            mapcreation = true;
+            debugmode = false;
+            mapcreation = false;
 
             this.Window.Position = new Point(0, 0);
 
@@ -135,11 +135,7 @@ namespace FirstGame
                 spriteBatch.Draw(DebugSelected, Logic.Gridiffy((int)Math.Floor((double)(mouse.X / 64)), (int)Math.Floor((double)(mouse.Y / 64))), Color.White);
                 spriteBatch.DrawString(font, gameTime.TotalGameTime.Milliseconds + "", new Vector2(10, 10), Color.Black);
             }
-
-            //spriteBatch.Draw(empty, new Rectangle(world.Entities.player.testcoll1, new Point(5, 5)), new Rectangle(0, 0, 4, 4), Color.Red, 0, new Vector2(2, 2), SpriteEffects.None, 0);
-            //spriteBatch.Draw(empty, new Rectangle(world.Entities.player.testcoll2, new Point(5, 5)), new Rectangle(0, 0, 4, 4), Color.Red, 0, new Vector2(2, 2), SpriteEffects.None, 0);
-            //spriteBatch.Draw(empty, new Rectangle(world.Entities.player.testcoll3, new Point(5, 5)), new Rectangle(0, 0, 4, 4), Color.Red, 0, new Vector2(2, 2), SpriteEffects.None, 0);
-
+            
             spriteBatch.Draw(empty, new Rectangle(20, 20, 100, 20), Color.Red);
             spriteBatch.Draw(empty, new Rectangle(20, 20, (int)(world.Entities.player.HP/10), 20),Color.Green);
             spriteBatch.End();
