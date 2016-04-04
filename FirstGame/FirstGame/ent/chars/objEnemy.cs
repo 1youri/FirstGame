@@ -12,7 +12,7 @@ namespace FirstGame.ent.chars
     {
         public List<Enemy> Enemies { get; set; }
         public ent.entProp.EntityProperties Properties { get; set; }
-        public Texture2D Sprite { get; set; }
+        public List<Texture2D> Sprites { get; set; }
 
 
         Point testpoint;
@@ -52,8 +52,9 @@ namespace FirstGame.ent.chars
                 if (e.HP <= 0 && e.UpdateSpeed != -1)
                 {
                     e.UpdateSpeed = -1;
+                    e.HP = rnd.Next(-2, 0);
                 }
-                else if(e.UpdateSpeed <= -1)
+                else if(e.UpdateSpeed > -1)
                 {
                     enemy2player = new Vector2((float)(player.Loc.X - e.Loc.X), (float)(player.Loc.Y - e.Loc.Y));
                     steps = (int)Math.Ceiling(enemy2player.Length() / 32);
@@ -100,7 +101,7 @@ namespace FirstGame.ent.chars
                             e.Destination.X = player.Loc.X;
                             e.Destination.Y = player.Loc.Y;
                             e.foundPlayer = true;
-                            e.MoveVector = Vector2.Normalize(new Vector2(e.Destination.rX - e.Loc.rX, e.Destination.rY - e.Loc.rY));
+                            e.MoveVector = Vector2.Normalize(new Vector2(e.Destination.rX - e.Loc.rX, e.Destination.rY - e.Loc.rY)) * new Vector2(2.5f,2.5f);
                         }
 
                         e.UpdateTime = (int)gameTime.TotalGameTime.TotalMilliseconds + e.UpdateSpeed;

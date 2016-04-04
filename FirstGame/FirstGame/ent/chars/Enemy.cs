@@ -11,7 +11,6 @@ namespace FirstGame.ent.chars
 {
     public class Enemy : Character
     {
-        
         public int UpdateSpeed { get; set; }
         public int UpdateTime { get; set; }
         public bool foundPlayer { get; set; }

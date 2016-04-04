@@ -55,7 +55,7 @@ namespace FirstGameUnitTest
         [TestMethod]
         public void testEnemy()
         {
-            FirstGame.ent.chars.Enemy enemy = new FirstGame.ent.chars.Enemy(new FirstGame.ent.entProp.Location(200,200,5),100,5,30);
+            FirstGame.ent.chars.Enemy enemy = new FirstGame.ent.chars.Enemy(new FirstGame.ent.entProp.Location(200,200,5),100,5,30,8);
             enemy.CoolDownTime = 500;
             enemy.UpdateTime = 500;
 

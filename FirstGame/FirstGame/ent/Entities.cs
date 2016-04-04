@@ -22,9 +22,9 @@ namespace FirstGame.ent
             MouseDown = false;
             firstcycle = true;
 
-            player = new Player(2, 1000);
+            player = new Player(1.7, 1000);
             Bullet = new Attacks.objBullet(8,100);
-            Enemy = new ent.chars.objEnemy(100, 1, 1, 500, 500, 30, 60, 2);
+            Enemy = new ent.chars.objEnemy(100, 0.5, 1.5, 1000, 1000, 30, 60, 8);
         }
 
         public void LoadEntities(ContentManager Content)
@@ -37,7 +37,12 @@ namespace FirstGame.ent
             };
 
             Bullet.Sprite = Content.Load<Texture2D>("entities\\bullet1.png");
-            Enemy.Sprite = Content.Load<Texture2D>("characters\\zombie1.png");
+            Enemy.Sprites = new List<Texture2D>()
+            {
+                Content.Load<Texture2D>("characters\\zombie1.png"),
+                Content.Load<Texture2D>("characters\\zombie1-d1.png"),
+                Content.Load<Texture2D>("characters\\zombie1-d2.png")
+            };
         }
 
         public void UpdateEntities(GameTime gameTime, GameWorld.Map map)
@@ -72,13 +77,23 @@ namespace FirstGame.ent
 
         public void DrawEntities(SpriteBatch spriteBatch)
         {
-
+            Random rnd = new Random();
             
             foreach (chars.Enemy e in Enemy.Enemies)
             {
-                spriteBatch.Draw(Enemy.Sprite, e.SprInf.DestinationRect, e.SprInf.SourceRect, Color.White, e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
-
-                //spriteBatch.Draw(Enemy.Sprite, new Rectangle((int)(e.Loc.rX + e.MoveVector.X * 200), (int)(e.Loc.rY + e.MoveVector.Y * 200), 10, 10), Color.Red);
+                if(e.HP <= 0)
+                {
+                    switch ((int)e.HP)
+                    {
+                        case -1:
+                            spriteBatch.Draw(Enemy.Sprites[1], e.SprInf.DestinationRect, e.SprInf.SourceRect, Color.White, e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
+                            break;
+                        case -2:
+                            spriteBatch.Draw(Enemy.Sprites[2], e.SprInf.DestinationRect, e.SprInf.SourceRect, Color.White, e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
+                            break;
+                    }
+                }
+                else spriteBatch.Draw(Enemy.Sprites[0], e.SprInf.DestinationRect, e.SprInf.SourceRect, Color.White, e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
             }
             foreach (Attacks.insBullet b in Bullet.Bullets)
             {
