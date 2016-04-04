@@ -86,10 +86,10 @@ namespace FirstGame.ent
                     switch ((int)e.HP)
                     {
                         case -1:
-                            spriteBatch.Draw(Enemy.Sprites[1], e.SprInf.DestinationRect, e.SprInf.SourceRect, Color.White, e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
+                            spriteBatch.Draw(Enemy.Sprites[1], e.SprInf.DestinationRect, e.SprInf.SourceRect, new Color(255,255,255, (float)e.UpdateTime/1000), e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
                             break;
                         case -2:
-                            spriteBatch.Draw(Enemy.Sprites[2], e.SprInf.DestinationRect, e.SprInf.SourceRect, Color.White, e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
+                            spriteBatch.Draw(Enemy.Sprites[2], e.SprInf.DestinationRect, e.SprInf.SourceRect, new Color(255, 255, 255, (float)e.UpdateTime / 1000), e.Loc.Rotation, e.SprInf.Origin, SpriteEffects.None, 0);
                             break;
                     }
                 }

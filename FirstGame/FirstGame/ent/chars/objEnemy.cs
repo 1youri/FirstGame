@@ -49,9 +49,10 @@ namespace FirstGame.ent.chars
 
             foreach (Enemy e in Enemies)
             {
-                if (e.HP <= 0 && e.UpdateSpeed != -1)
+                if (e.HP <= 0 && e.UpdateSpeed > 0)
                 {
                     e.UpdateSpeed = -1;
+                    e.UpdateTime = 1000;
                     e.HP = rnd.Next(-2, 0);
                 }
                 else if(e.UpdateSpeed > -1)
@@ -138,6 +139,11 @@ namespace FirstGame.ent.chars
                         player.HP -= e.Damage;
                         e.CoolDownTime = Properties.CoolDown + (int)gameTime.TotalGameTime.TotalMilliseconds;
                     }
+                }
+                else if(e.UpdateSpeed <= -1 && e.UpdateTime > 0)
+                {
+                    e.UpdateTime--;
+                    if (e.UpdateTime < 0) e.UpdateTime = 0;
                 }
             }
 
