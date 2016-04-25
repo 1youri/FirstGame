@@ -14,6 +14,7 @@ namespace FirstGame.GameWorld
         public objects.Wallobj WallWood { get; set; }
         public objects.Wallobj WallStone { get; set; }
         public List<ent.entProp.Location> ZombieLocs { get; set; }
+        public ent.entProp.Location PlayerLoc { get; set; }
 
         public Cell(objects.Wallobj WallWood, objects.Wallobj WallStone)
         {

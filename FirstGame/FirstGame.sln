@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstGame", "FirstGame\FirstGame.csproj", "{8F0ECF34-9BAC-4183-8448-52150577E215}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstGameUnitTest", "FirstGameUnitTest\FirstGameUnitTest.csproj", "{F756ACE8-AE75-4FF7-AD48-36F50E9F8A08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicDLL", "LogicDll\LogicDLL.csproj", "{8E8662F6-C5BD-4F0E-9197-651E04EB08A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,14 @@ Global
 		{F756ACE8-AE75-4FF7-AD48-36F50E9F8A08}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F756ACE8-AE75-4FF7-AD48-36F50E9F8A08}.Release|x86.ActiveCfg = Release|Any CPU
 		{F756ACE8-AE75-4FF7-AD48-36F50E9F8A08}.Release|x86.Build.0 = Release|Any CPU
+		{8E8662F6-C5BD-4F0E-9197-651E04EB08A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E8662F6-C5BD-4F0E-9197-651E04EB08A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E8662F6-C5BD-4F0E-9197-651E04EB08A1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8E8662F6-C5BD-4F0E-9197-651E04EB08A1}.Debug|x86.Build.0 = Debug|Any CPU
+		{8E8662F6-C5BD-4F0E-9197-651E04EB08A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E8662F6-C5BD-4F0E-9197-651E04EB08A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E8662F6-C5BD-4F0E-9197-651E04EB08A1}.Release|x86.ActiveCfg = Release|Any CPU
+		{8E8662F6-C5BD-4F0E-9197-651E04EB08A1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

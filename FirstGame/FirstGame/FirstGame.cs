@@ -6,6 +6,7 @@ using System.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using LogicDLL;
 
 namespace FirstGame
 {
@@ -47,8 +48,8 @@ namespace FirstGame
 
             base.Initialize();
 
-            debugmode = true;
-            mapcreation = true;
+            debugmode = false;
+            mapcreation = false;
 
             this.Window.Position = new Point(0, 0);
 

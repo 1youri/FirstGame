@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using LogicDLL;
 
 namespace FirstGame.ent.chars
 {
@@ -126,7 +127,7 @@ namespace FirstGame.ent.chars
                     {
                         e.Loc.X = e.Loc.X + e.MoveVector.X * Properties.BaseMoveSpeed * e.MoveSpeed;
                         e.Loc.Y = e.Loc.Y + e.MoveVector.Y * Properties.BaseMoveSpeed * e.MoveSpeed;
-                        e.Loc.Rotation = (float)(Logic.CalcRot(e.MoveVector) - Math.PI * 0.5);
+                        e.Loc.Rotation = (float)(LogicDLL.Logic.CalcRot(e.MoveVector) - Math.PI * 0.5);
                     }
 
                     

@@ -67,7 +67,6 @@
     <Compile Include="ent\entProp\Location.cs" />
     <Compile Include="GameWorld\Cell.cs" />
     <Compile Include="GameWorld\objects\Wallobj.cs" />
-    <Compile Include="Logic.cs" />
     <Compile Include="GameWorld\Map.cs" />
     <Compile Include="ent\Player.cs" />
     <Compile Include="Program.cs" />
@@ -76,6 +75,9 @@
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="LogicDll">
+      <HintPath>..\LogicDll\bin\Debug\LogicDll.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>

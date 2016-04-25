@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-namespace FirstGame
+namespace LogicDLL
 {
     public class Logic
     {
@@ -28,7 +27,7 @@ namespace FirstGame
         {
             return new Rectangle(LocX * 64, LocY * 64, 64, 64);
         }
-        
+
         public static Vector2 vectorswitch(Vector2 vector)
         {
             if (vector.X != 0)
@@ -50,6 +49,5 @@ namespace FirstGame
 
             return vector;
         }
-
     }
 }

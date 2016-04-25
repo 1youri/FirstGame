@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using System.IO;
+using LogicDLL;
 
 namespace FirstGame.GameWorld
 {
@@ -25,6 +26,11 @@ namespace FirstGame.GameWorld
             {
                 CurrentCell.WallWood.Walls.Add(new objects.Wall(new SprInfo(new Rectangle(0, 0, 32, 32), new Vector2(25, 25), Logic.Gridiffy(X, Y))));
             }
+            if (Block == "2")
+            {
+                CurrentCell.WallStone.Walls.Add(new objects.Wall(new SprInfo(new Rectangle(0, 0, 32, 32), new Vector2(25, 25), Logic.Gridiffy(X, Y))));
+            }
+
 
             return CurrentCell;
         }
@@ -52,6 +58,11 @@ namespace FirstGame.GameWorld
                         Rectangle temp = Logic.Gridiffy(x, y);
                         returncell.ZombieLocs.Add(new ent.entProp.Location(temp.X, temp.Y, 0));
                     }
+                    //if (filedata[y].Substring(x, 1) == "p")
+                    //{
+                    //    Rectangle temp = Logic.Gridiffy(x, y);
+                    //    returncell.PlayerLoc = new ent.entProp.Location(temp.X, temp.Y, 0);
+                    //}
 
                 }
             }
