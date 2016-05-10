@@ -35,6 +35,16 @@ namespace FirstGame.GameWorld
             return CurrentCell;
         }
 
+        [Serializable]
+        public class UnexpectedMapFormatException : Exception
+        {
+            public UnexpectedMapFormatException() { }
+            public UnexpectedMapFormatException(string message) : base(message) { }
+            public UnexpectedMapFormatException(string message, Exception inner) : base(message, inner) { }
+            protected UnexpectedMapFormatException(
+              System.Runtime.Serialization.SerializationInfo info,
+              System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+        }
         public static Cell LoadFromFile(string filename)
         {
             Cell returncell = new Cell(new objects.Wallobj(new List<objects.Wall>()), new objects.Wallobj(new List<objects.Wall>()));
@@ -43,6 +53,7 @@ namespace FirstGame.GameWorld
 
             for (int y = 0; y < 17; y++)
             {
+                if (filedata[y].Substring(30) != "|") throw new UnexpectedMapFormatException();
                 for (int x = 0; x < 30; x++)
                 {
                     if (filedata[y].Substring(x, 1) == "1")
