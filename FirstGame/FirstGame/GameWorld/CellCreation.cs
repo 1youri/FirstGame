@@ -50,7 +50,7 @@ namespace FirstGame.GameWorld
             Cell returncell = new Cell(new objects.Wallobj(new List<objects.Wall>()), new objects.Wallobj(new List<objects.Wall>()));
 
             string[] filedata = File.ReadAllLines("maps\\" + filename + ".YMF");
-
+            if (filedata[17].Count(x => x == '-') != 31 || filedata[17].Length != 31) throw new UnexpectedMapFormatException();
             for (int y = 0; y < 17; y++)
             {
                 if (filedata[y].Substring(30) != "|") throw new UnexpectedMapFormatException();

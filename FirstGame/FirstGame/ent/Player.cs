@@ -78,7 +78,12 @@ namespace FirstGame.ent
         public Vector2 CheckPlayerCollision(GameWorld.Map map, Vector2 walkDirection)
         {
             testcoll1 = new Point(Loc.rX + (int)(walkDirection.X * 20), Loc.rY + (int)(walkDirection.Y * 20));
-            foreach (GameWorld.objects.Wall w in map.CurrentCell.WallWood.Walls)
+
+            List<GameWorld.objects.IWall> Walls = new List<GameWorld.objects.IWall>();
+            Walls.AddRange(map.CurrentCell.WallWood.Walls.ToList<GameWorld.objects.IWall>());
+            Walls.AddRange(map.CurrentCell.WallStone.Walls.ToList<GameWorld.objects.IWall>());
+
+            foreach (GameWorld.objects.IWall w in Walls)
             {
                 if (w.SprInf.DestinationRect.Contains(testcoll1))
                 {
